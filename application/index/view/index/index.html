@@ -2,12 +2,28 @@
 {extend name="common/base" /}
 {block name="header"}
 <style type="text/css">
-	.layui-main{
-		background-color: #ccc;
-		height: 100px;
-	}
 	.carousel{
 		width: 100%;
+	}
+	.layui-main{
+		height: 550px;
+	}
+	.layui-container{
+		margin: 10px;
+		border: solid 1px;
+	}
+	.course-item{
+		margin: 20px;
+		width: 220px;
+		height: 170px;
+	}
+	h1{
+		font-size: 28px !important;
+		text-align: center;
+	}
+	.title{
+		margin-left: 19px;
+	    margin-top: -9px;
 	}
 </style>
 {/block}
@@ -23,8 +39,45 @@
 	</div>
 </div>
 <!-- 轮播图end -->
-<div class="layui-main" style="height: 600px;">
+<!-- 课程begin -->
+<div class="layui-main">
+	<div class="layui-container">
+		  <h1>猜你喜欢</h1>
+		<div class="layui-row">
+			<div class="layui-col-md3">
+				<a href="#"><img src="__SRC__/images/UI.jpg" class="course-item"></a>
+				<div class="title">UI设计入门与精通</div>
+			</div>
+			<div class="layui-col-md3">
+				<a href="#"><img src="__SRC__/images/UI.jpg" class="course-item"></a>
+			</div>
+			<div class="layui-col-md3">
+				<a href="#"><img src="__SRC__/images/UI.jpg" class="course-item"></a>
+			</div>
+			<div class="layui-col-md3">
+				<a href="#"><img src="__SRC__/images/UI.jpg" class="course-item"></a>
+			</div>
+		</div>
 </div>
+	<div class="layui-container">
+		  <h1 align="center">精品课程</h1>
+		<div class="layui-row">
+			<div class="layui-col-md3">
+				<a href="#"><img src="__SRC__/images/UI.jpg" class="course-item"></a>
+			</div>
+			<div class="layui-col-md3">
+				<a href="#"><img src="__SRC__/images/UI.jpg" class="course-item"></a>
+			</div>
+			<div class="layui-col-md3">
+				<a href="#"><img src="__SRC__/images/UI.jpg" class="course-item"></a>
+			</div>
+			<div class="layui-col-md3">
+				<a href="#"><img src="__SRC__/images/UI.jpg" class="course-item"></a>
+			</div>
+		</div>
+</div>
+</div>
+<!-- 课程end -->
 {/block}
 {block name="footer"}
 <script type="text/javascript">

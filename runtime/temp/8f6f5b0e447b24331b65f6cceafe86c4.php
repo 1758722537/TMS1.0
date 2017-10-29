@@ -1,4 +1,21 @@
-{include file='common/header' /}
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:77:"D:\phpStudy\WWW\TMS1.0\public/../application/admin\view\info\banner-list.html";i:1509272073;s:74:"D:\phpStudy\WWW\TMS1.0\public/../application/admin\view\common\header.html";i:1507363041;s:70:"D:\phpStudy\WWW\TMS1.0\public/../application/admin\view\common\js.html";i:1507120356;}*/ ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            教学管理系统
+        </title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="shortcut icon" href="__STATIC__/admin/favicon.ico" type="image/x-icon" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="format-detection" content="telephone=no">
+        <link rel="stylesheet" href="__STATIC__/admin/css/x-admin.css" media="all">
+        <link rel="stylesheet" type="text/css" href="__BS__/css/bootstrap.css">
+    </head>
     <body>
         <div class="x-nav">
             <span class="layui-breadcrumb">
@@ -10,7 +27,7 @@
         </div>
         <div class="x-body">
             <xblock><button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button>
-            <button class="layui-btn" onclick="banner_add('添加轮播图','{:url('info/bannerAdd')}','600','500')"><i class="layui-icon">&#xe608;</i>添加</button><span class="x-right" style="line-height:40px">共有数据：{$num} 条</span></xblock>
+            <button class="layui-btn" onclick="banner_add('添加轮播图','<?php echo url('info/bannerAdd'); ?>','600','500')"><i class="layui-icon">&#xe608;</i>添加</button><span class="x-right" style="line-height:40px">共有数据：<?php echo $num; ?> 条</span></xblock>
             <table class="layui-table">
                 <thead>
                     <tr>
@@ -38,51 +55,52 @@
                     </tr>
                 </thead>
                 <tbody id="x-img">
-                    {foreach name="list" item="val"}
+                    <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): if( count($list)==0 ) : echo "" ;else: foreach($list as $key=>$val): ?>
                         <tr>
                         <td>
-                            <input type="checkbox" value="{$val.id}" name="">
+                            <input type="checkbox" value="<?php echo $val['id']; ?>" name="">
                         </td>
                         <td>
-                            {$val.id}
+                            <?php echo $val['id']; ?>
                         </td>
                         <td>
-                            <img  src="{$val.src}" width="200" alt="">
+                            <img  src="<?php echo $val['src']; ?>" width="200" alt="">
                         </td>
                         <td >
-                            {$val.url}
+                            <?php echo $val['url']; ?>
                         </td>
                         <td >
-                            {$val.desc}
+                            <?php echo $val['desc']; ?>
                         </td>
                         <td class="td-status">
-                            {$val.status==1? '<span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span>': '<span class="layui-btn layui-btn-disabled layui-btn-mini">已停用</span>'}
+                            <?php echo !empty($val['status']) && $val['status']==1?'<span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span>': '<span class="layui-btn layui-btn-disabled layui-btn-mini">已停用</span>'; ?>
                         </td>
                         <td class="td-manage">
 <!--                             <a style="text-decoration:none" onclick="banner_stop(this,'10001')" href="javascript:;" title="不显示">
                                 <i class="layui-icon">&#xe601;</i>
                             </a> -->
-                            <a style="text-decoration:none" href="{:url('info/changeStatus',['id'=>$val.id])}" title="不显示">
+                            <a style="text-decoration:none" href="<?php echo url('info/changeStatus',['id'=>$val['id']]); ?>" title="不显示">
                                 <i class="layui-icon">&#xe601;</i>
                             </a>
-                            <a title="编辑" href="javascript:;" onclick="banner_edit('编辑','{:url('info/bannerEdit',['id'=>$val.id])}','4','','510')"
+                            <a title="编辑" href="javascript:;" onclick="banner_edit('编辑','<?php echo url('info/bannerEdit',['id'=>$val['id']]); ?>','4','','510')"
                             class="ml-5" style="text-decoration:none">
                                 <i class="layui-icon">&#xe642;</i>
                             </a>
-                            <a href="{:url('info/bannerDel',['id'=>$val.id])}")" 
+                            <a href="<?php echo url('info/bannerDel',['id'=>$val['id']]); ?>")" 
                             style="text-decoration:none">
                                 <i class="layui-icon">&#xe640;</i>
                             </a>
                         </td>
                     </tr>
-                    {/foreach}
+                    <?php endforeach; endif; else: echo "" ;endif; ?>
                 </tbody>
             </table>
-            {if condition="isset($page)"}
-                {$page}
-            {/if}
+            <?php if(isset($page)): ?>
+                <?php echo $page; endif; ?>
         </div>
-        {include file='common/js' /}
+                <script src="__STATIC__/admin/lib/layui/layui.js" charset="utf-8"></script>
+        <script src="__STATIC__/admin/js/x-admin.js"></script>
+        <script src="__STATIC__/admin/js/x-layui.js" charset="utf-8"></script>
         <script>
             layui.use(['laydate','element','laypage','layer'], function(){
                 $ = layui.jquery;//jquery

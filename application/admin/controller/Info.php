@@ -1,5 +1,6 @@
 <?php
 /**
+ * 轮播图以及问题
  * Created by PhpStorm.
  * User: liuhui
  * Date: 2017/9/16
@@ -34,18 +35,20 @@ class Info extends Base
     }
 
     /**
-     * 轮播列表
+     * 分页显示轮播列表
      * @return View
      */
     public function bannerList()
     {
-        $row = 3;
         $this->islogin();           //检查是否登录
+        $row = 6;
         $data = $this->pageSelectList('carousel',$row);
         if(isset($data['page'])){
             $list = $data['list'];
             $page = $data['page'];
             $this->assign('page',$page);
+        }else{
+            $list = Db::table('carousel')->select();
         }
         $num = count($list);
         $this->assign(['num'=>$num,'list'=>$list]);
@@ -116,6 +119,11 @@ class Info extends Base
         $this->assign('list',$list);
         return $this->fetch('banner-edit');
     }
+
+    /**
+     * 编辑图片
+     * @param Request $request
+     */
     public function editImage(Request $request)
     {
         $id = $request->param('id');
@@ -127,5 +135,16 @@ class Info extends Base
         if ($result){
             $this->success('成功！');
         }
+    }
+
+    /**
+     * 删除轮播图
+     * @param Request $request
+     */
+    public function bannerDel(Request $request)
+    {
+        $id = $request->param('id');
+        Db::table('carousel')->where('id',$id)->delete();
+        $this->success('删除成功！');
     }
 }

@@ -208,6 +208,7 @@ class Admin extends Base
     }
     public function test()
     {
-        dump(config());
+        //dump(config());
+        return md5('w050762.w');
     }
 }

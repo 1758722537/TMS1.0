@@ -46,6 +46,12 @@ class Index extends Base
         }
         return ['status'=>$status,'message'=>$message];
     }
+
+    /**
+     * 处理注册
+     * @param Request $request
+     * @return array
+     */
     public function doregister(Request $request)
     {
         $status = 1;
