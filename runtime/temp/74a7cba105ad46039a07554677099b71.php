@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:72:"D:\phpStudy\WWW\TMS1.0\public/../application/index\view\index\index.html";i:1509274478;s:72:"D:\phpStudy\WWW\TMS1.0\public/../application/index\view\common\base.html";i:1509274989;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:72:"D:\phpStudy\WWW\TMS1.0\public/../application/index\view\index\index.html";i:1509274478;s:72:"D:\phpStudy\WWW\TMS1.0\public/../application/index\view\common\base.html";i:1509355924;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,7 +60,7 @@
 		   </li>
 			<li class="layui-nav-item"><a href="">我</a>
 				<dd class="layui-nav-child">
-					<dl><a href="">基本信息</a></dl>
+					<dl><a href="<?php echo url('index/userInfo',['id'=>\think\Session::get('user_sinfo.id')]); ?>">基本信息</a></dl>
 					<dl><a href="">足迹</a></dl>
 					<dl><a href="<?php echo url('index/logout'); ?>">退出</a></dl>
 				</dd>

@@ -116,6 +116,29 @@ class Index extends Base
             'message'=>$message
         ];
     }
+
+    /**
+     * 个人信息
+     * @param Request $request
+     * @return mixed
+     */
+    public function userInfo(Request $request)
+    {
+        $id = $request->param('id');
+        $list = Userinfo::get($id);
+        //dump($list);
+        $this->assign(['info'=>$list]);
+        return $this->fetch();
+    }
+    public function infoEdit(Request $request)
+    {
+        $id = $request->param('id');
+        $data = $request->param();
+        $user = Userinfo::update($data,['id'=>$id]);
+        if($user){
+            $this->success();
+        }
+    }
     /**
      * 退出登录
      */
