@@ -1,12 +1,13 @@
 <!-- 首页 -->
 {extend name="common/base" /}
 {block name="header"}
+<link rel="stylesheet" type="text/css" href="__BS__/css/bootstrap.css">
 <style type="text/css">
 	.carousel{
 		width: 100%;
 	}
 	.layui-main{
-		height: 550px;
+		height: 630px;
 	}
 	.layui-container{
 		margin: 10px;
@@ -31,7 +32,7 @@
 <!-- 轮播图begin -->
 <div class="layui-carousel" id="header-carousel">
 	<div carousel-item>
-		{foreach name="list" item="val"}
+		{foreach name="imageList" item="val"}
 		   {if condition="$val.status==1"}
 		   	  <div><a href="{$val.url}"><img src="{$val.src}" class="carousel" alt="{$val.desc}"></a></div>
 		   {/if}
@@ -41,41 +42,32 @@
 <!-- 轮播图end -->
 <!-- 课程begin -->
 <div class="layui-main">
+	<!-- 精品课程 -->
 	<div class="layui-container">
-		  <h1>猜你喜欢</h1>
+		  <h1>精品课程</h1>
 		<div class="layui-row">
+			{foreach name="videoList" item="video"}
 			<div class="layui-col-md3">
-				<a href="#"><img src="__SRC__/images/UI.jpg" class="course-item"></a>
-				<div class="title">UI设计入门与精通</div>
+				<a href="{:url('study/playVideo',['id'=>$video.id])}"><img src="{$video.img_url}" class="course-item"></a>
+				<div class="title"><h2>{$video.title}</h2></div>
 			</div>
-			<div class="layui-col-md3">
-				<a href="#"><img src="__SRC__/images/UI.jpg" class="course-item"></a>
-			</div>
-			<div class="layui-col-md3">
-				<a href="#"><img src="__SRC__/images/UI.jpg" class="course-item"></a>
-			</div>
-			<div class="layui-col-md3">
-				<a href="#"><img src="__SRC__/images/UI.jpg" class="course-item"></a>
-			</div>
+			{/foreach}
 		</div>
-</div>
-	<div class="layui-container">
-		  <h1 align="center">精品课程</h1>
+		{$videoList->render()}
+   </div>
+   <!-- 基础教学 -->
+   <div class="layui-container">
+		  <h1>基础课程</h1>
 		<div class="layui-row">
+			{foreach name="videoList" item="video"}
 			<div class="layui-col-md3">
-				<a href="#"><img src="__SRC__/images/UI.jpg" class="course-item"></a>
+				<a href="{:url('study/playVideo',['id'=>$video.id])}"><img src="{$video.img_url}" class="course-item"></a>
+				<div class="title"><h2>{$video.title}</h2></div>
 			</div>
-			<div class="layui-col-md3">
-				<a href="#"><img src="__SRC__/images/UI.jpg" class="course-item"></a>
-			</div>
-			<div class="layui-col-md3">
-				<a href="#"><img src="__SRC__/images/UI.jpg" class="course-item"></a>
-			</div>
-			<div class="layui-col-md3">
-				<a href="#"><img src="__SRC__/images/UI.jpg" class="course-item"></a>
-			</div>
+			{/foreach}
 		</div>
-</div>
+		{$videoList->render()}
+   </div>
 </div>
 <!-- 课程end -->
 {/block}
@@ -98,9 +90,6 @@
 </script>
 	<script type="text/javascript">
 			function register(title,url,w,h) {
-				openPage(title,url,w,h);
-			}
-			function login(title,url,w,h){
 				openPage(title,url,w,h);
 			}
 	</script>

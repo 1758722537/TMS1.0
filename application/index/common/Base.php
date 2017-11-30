@@ -17,7 +17,7 @@ class Base extends Controller
     public function _initialize()
     {
         parent::_initialize(); // 初始化
-        define('USER_ID',Session::set('user_sid'));  //定义常量
+        define('USER_ID',Session::get('user_sid'));  //定义常量
     }
     /**
      *判断用户是否登录 放在后台的admin/index
@@ -25,7 +25,7 @@ class Base extends Controller
     protected function islogin()
     {
         if(empty(USER_ID)) {
-            $this->error('请登录', url('admin/login'));
+            $this->error('请登录', url('index/login'));
         }
     }
 

@@ -12,6 +12,10 @@ use think\Model;
 class Userinfo extends Model
 {
     protected $autoWriteTimestamp = true;
+    public function records()
+    {
+    	return $this->hasMany('Record','uid','id');
+    }
     protected function setPasswordAttr($value)
     {
         $str = md5($value);

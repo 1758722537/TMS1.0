@@ -2,7 +2,8 @@
 namespace app\index\controller;
 use app\admin\model\User;
 use app\index\common\Base;
-use app\index\model\Userinfo;
+use app\index\model\UserInfo;
+use app\index\model\Record;
 use think\Db;
 use think\Loader;
 use think\Request;
@@ -16,8 +17,9 @@ class Index extends Base
      */
     public function index()
     {
-        $list = Db::table('carousel')->select();
-        $this->assign('list',$list);
+        $imageList = Db::table('carousel')->where(['status'=>1])->select();
+        $videoList = Db::table('video')->where(['status'=>1])->paginate(4);
+        $this->assign(['imageList'=>$imageList,'videoList'=>$videoList]);
     	return $this->fetch();
     }
 
@@ -40,7 +42,7 @@ class Index extends Base
         $status = 1;
         $message = '用户名可用';
         $name = trim($request->param('name'));
-        if(Userinfo::get(['name'=>$name])){
+        if(UserInfo::get(['name'=>$name])){
             $status = 0;
             $message = '用户名不可用，请重新输入';
         }

@@ -9,6 +9,11 @@
         margin-left: 110px;
         margin-top: 8px;
     }
+    .main{
+        width: 50%;
+        height: 500px;
+        margin: 50px auto;
+    }
 </style>
 {/block}
 {block name='body'}
@@ -41,6 +46,7 @@
          <div class="layui-form-item">
              <input type="button" class="layui-btn" id="submit" value="登录">
              <input type="reset" name="" class="layui-btn layui-btn-primary">
+             <a href="{:url('index/index')}" class="layui-btn layui-btn-primary">首页</a>
          </div>
      </form>
  </div>
@@ -50,7 +56,7 @@
     layui.use(['jquery','layer'],function () {
         var $  =layui.$,
             layer = layui.layer;
-        //提交数据
+        //提交数据a
         $("#submit").click(function () {
             $.ajax({
                 type:'post',
@@ -62,7 +68,11 @@
                         window.location.href = "{:url('index/index')}";
                     }else{
                         layer.msg(res.message);
-                        return false
+                        //刷新验证码
+                            var S = new Date();
+                            var time = S.getTime();
+                            $("#verify-img").attr('src',$("#verify-img").attr("src").toString().split("?")[0]+'?time='+time);
+                        return false;
                     }
                 }
             });

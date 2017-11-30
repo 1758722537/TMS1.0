@@ -75,17 +75,23 @@
                          }
                          if(data.status==0){
                          	layer.msg(data.message);
+                         	//刷新验证码
+			                var S = new Date();
+							var time = S.getTime();
+							$("#verify-img").attr('src',$("#verify-img").attr("src").toString().split("?")[0]+'?time='+time);
                              return false;
                         }
                     }
                 });
 			});
 			// 验证码刷新
-			$("#verify-img").on('click',function(){
+				$("#verify-img").on('click',function(){
 				var S = new Date();
 				var time = S.getTime();
 				$(this).attr('src',$("#verify-img").attr("src").toString().split("?")[0]+'?time='+time);
 			});
 		});
+	</script>
+	<script type="text/javascript">
 	</script>
 {/block}
