@@ -1,0 +1,96 @@
+<!-- 首页 -->
+{extend name="common/base" /}
+{block name="header"}
+<link rel="stylesheet" type="text/css" href="__BS__/css/bootstrap.css">
+<style type="text/css">
+	.carousel{
+		width: 100%;
+	}
+	.layui-main{
+		height: 630px;
+	}
+	.layui-container{
+		margin: 10px;
+		border: solid 1px;
+	}
+	.course-item{
+		margin: 20px;
+		width: 220px;
+		height: 170px;
+	}
+	h1{
+		font-size: 28px !important;
+		text-align: center;
+	}
+	.title{
+		margin-left: 19px;
+	    margin-top: -9px;
+	}
+</style>
+{/block}
+{block name="body"}
+<!-- 轮播图begin -->
+<div class="layui-carousel" id="header-carousel">
+	<div carousel-item>
+		{foreach name="imageList" item="val"}
+		   {if condition="$val.status==1"}
+		   	  <div><a href="{$val.url}"><img src="{$val.src}" class="carousel" alt="{$val.desc}"></a></div>
+		   {/if}
+		{/foreach}
+	</div>
+</div>
+<!-- 轮播图end -->
+<!-- 课程begin -->
+<div class="layui-main">
+	<!-- 精品课程 -->
+	<div class="layui-container">
+		  <h1>精品课程</h1>
+		<div class="layui-row">
+			{foreach name="videoList" item="video"}
+			<div class="layui-col-md3">
+				<a href="{:url('study/playVideo',['id'=>$video.id])}"><img src="{$video.img_url}" class="course-item"></a>
+				<div class="title"><h2>{$video.title}</h2></div>
+			</div>
+			{/foreach}
+		</div>
+		{$videoList->render()}
+   </div>
+   <!-- 基础教学 -->
+   <div class="layui-container">
+		  <h1>基础课程</h1>
+		<div class="layui-row">
+			{foreach name="videoList" item="video"}
+			<div class="layui-col-md3">
+				<a href="{:url('study/playVideo',['id'=>$video.id])}"><img src="{$video.img_url}" class="course-item"></a>
+				<div class="title"><h2>{$video.title}</h2></div>
+			</div>
+			{/foreach}
+		</div>
+		{$videoList->render()}
+   </div>
+</div>
+<!-- 课程end -->
+{/block}
+{block name="footer"}
+<script type="text/javascript">
+	layui.use(['element','jquery','carousel','layer'],function(){
+		var element = layui.element,
+			$ = layui.$,
+			carousel = layui.carousel,
+			layer =  layui.layer;
+			//轮播图
+			carousel.render({
+				elem:'#header-carousel',
+				width:'100%',
+				height:'260px',
+				anim:'fade'
+			});
+			//注册弹层
+	});
+</script>
+	<script type="text/javascript">
+			function register(title,url,w,h) {
+				openPage(title,url,w,h);
+			}
+	</script>
+{/block}
