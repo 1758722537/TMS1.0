@@ -1,0 +1,28 @@
+{extend name="common/base" /}
+{block name="header"}
+<link rel="stylesheet" type="text/css" href="__BS__/css/bootstrap.css">
+<style type="text/css">
+    .layui-main{
+        height: 600px;
+    }
+</style>
+{/block}
+{block name="body"}
+<div class="layui-main">
+    <ul class="layui-timeline">
+        {foreach name="list" item="val"}
+        <li class="layui-timeline-item">
+            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+            <div class="layui-timeline-content layui-text">
+                <h3 class="layui-timeline-title">{$val.create_time}</h3>
+                    <ul>
+                        <li>学习了{$val.title}</li>
+                    </ul>
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;{$val.content}
+            </div>
+        </li>
+        {/foreach}
+    </ul>
+    {$list->render()}
+</div>
+{/block}

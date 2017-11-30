@@ -1,0 +1,19 @@
+{extend name="common/base" /}
+{block name="header"}
+<style type="text/css">
+	.layui-main{
+		text-align: center;
+	}
+	video {
+		height: 443px;
+		margin: 10px auto;
+	}
+</style>
+{/block}
+{block name="body"}
+	<div class="layui-main">
+		<video controls="" autoplay="true">
+			<source src="{$list.url}" type="">
+		</video>
+	</div>
+{/block}
